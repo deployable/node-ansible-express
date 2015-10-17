@@ -1,5 +1,5 @@
 {
-  "name": "node-ansible-express",
+  "name": "ansible-express",
   "version": "0.1.0",
   "description": "Ansible Express API",
   "main": "app.js",
@@ -20,5 +20,17 @@
   "bugs": {
     "url": "https://github.com/deployable/node-ansible-express/issues"
   },
-  "homepage": "https://github.com/deployable/node-ansible-express#readme"
+  "homepage": "https://github.com/deployable/node-ansible-express#readme",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "express": "^4.13.3",
+    "passport": "^0.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1",
+    "supertest": "^1.1.0"
+  }
 }
