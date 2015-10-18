@@ -2,9 +2,12 @@
   "name": "ansible-express",
   "version": "0.1.0",
   "description": "Ansible Express API",
-  "main": "app.js",
+  "main": "appjs.js",
   "scripts": {
-    "test": "mocha"
+    "test": "npm test-base",
+    "test-base": "npm run build && mocha test/base_spec.coffee",
+    "build": "coffee -co appjs app",
+    "build-watch": "coffee -cwo appjs app"
   },
   "repository": {
     "type": "git",
