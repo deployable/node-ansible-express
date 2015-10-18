@@ -1,0 +1,3 @@
+class Playbook
+  @runAsync: ( opts )->
+    

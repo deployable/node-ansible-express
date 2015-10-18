@@ -1,8 +1,11 @@
+# ## Routes `/`
+
+debug       = require('debug')('ansible-express:app:routes')
 router      = require('express').Router()
 pkg         = require('../../package.json')
 
 
-# Include routes
+# Include any sub routes
 router.use '/ansible', require('./ansible')
 
 # Requests

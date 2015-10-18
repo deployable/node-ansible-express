@@ -1,21 +1,28 @@
-express     = require('express')
-passport    = require('passport')
-pkg         = require('../package.json')
-config      = require('./config.json')
 
-# Source maps, some of the time
-if ! process.env.NODE_ENV or process.env.NODE_ENV != 'production'
+# ## Ansible API
+
+# The main express App
+
+debug         = require('debug')('ansible-express:app')
+express       = require('express')
+passport      = require('passport')
+pkg           = require('../package.json')
+config        = require('../config.json')
+
+# Support source map generation when not in production mode
+unless process.env.NODE_ENV is 'production'
   require('source-map-support').install();
 
-# ## App
+
+# Startup the app/server
 app = express()
 
-# Include routes
+# Routes are setup externally
 app.use '/', require('./routes')
 
-# Startup the server
+# Listen
 app.listen config.http.port, ( err )->
   console.log "Server listening on #{config.http.port}"
 
-# Export
+# Export the app for use elsewhere
 module.exports.app = app

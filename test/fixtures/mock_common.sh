@@ -19,7 +19,7 @@ fi
 # doing the mock ansible outpu
 
 mock_rc=0
-mock_sleep=0.1
+mock_sleep=0.01
 
 while true; do
   debug "args" "$1" "$@"

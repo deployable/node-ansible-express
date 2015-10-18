@@ -6,7 +6,7 @@
 set -ue
 rundir=${0%/*}
 [ ! -d "$rundir" ] && rundir=$(which "$0") && rundir=${rundir%/*}
-source "$rundir/mock-common.sh"
+source "$rundir/mock_common.sh"
 
 
 # Output variables
