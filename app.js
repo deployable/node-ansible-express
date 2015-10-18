@@ -1,3 +1,1 @@
-// Coffeescript launcher
-require('coffee-script').register();
-require('./app/');
+require('./appjs/');
