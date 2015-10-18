@@ -4,7 +4,7 @@ expect  = require('chai').expect
 debug   = require('debug')('ansible-express:test:base')
 
 # Include the App
-app = require("../app/index").app
+app = require("../appjs/index").app
 
 
 describe 'express rest api server', ->

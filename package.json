@@ -6,8 +6,8 @@
   "scripts": {
     "test": "npm test-base",
     "test-base": "npm run build && mocha test/base_spec.coffee",
-    "build": "coffee -co appjs app",
-    "build-watch": "coffee -cwo appjs app"
+    "build": "coffee --compile --map --output appjs app",
+    "build-watch": "coffee --compile --watch --map --output appjs app"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "gulp": "^3.9.0",
     "mocha": "^2.3.3",
     "sinon": "^1.17.1",
+    "source-map-support": "^0.3.2",
     "supertest": "^1.1.0"
   }
 }
