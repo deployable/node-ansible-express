@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Run a mock ansible command for testing
+# ansible --module-name=shell --args="echo 'hello world'" -i hosts local
+
+set -ue
+rundir=${0%/*}
+[ ! -d "$rundir" ] && rundir=$(which "$0") && rundir=${rundir%/*}
+source "$rundir/mock-common.sh"
+
+
+# Output variables
+
+output_start=$(cat <<EOF_START
+localhost | success | rc=0 >>
+hello world
+
+EOF_START)
+
+
+# Run our mock ansible
+
+echo "$output_start"
+exit $mock_rc

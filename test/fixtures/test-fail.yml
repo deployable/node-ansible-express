@@ -1,0 +1,6 @@
+---
+- hosts: local
+  tasks:
+  - shell: |
+      echo 'hello failure'
+      exit 1

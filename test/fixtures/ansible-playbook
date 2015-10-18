@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+
+# Run a mock ansible-playbook command for testing
+# ansible-playbook -i hosts local test.yml
+
+set -ue
+rundir=${0%/*}
+[ ! -d "$rundir" ] && rundir=$(which "$0") && rundir=${rundir%/*}
+source "$rundir/mock-common.sh"
+
+
+# Output variables
+
+output_start=$(cat <<EOF_START
+PLAY [local] ****************************************************************** 
+
+GATHERING FACTS *************************************************************** 
+ok: [localhost]
+
+TASK: [shell echo 'hello world'] ********************************************** 
+EOF_START)
+
+output_success=$(cat <<EOF_SUCCESS
+changed: [localhost]
+
+PLAY RECAP ******************************************************************** 
+localhost                  : ok=2    changed=1    unreachable=0    failed=0   
+EOF_SUCCESS)
+
+output_failure=$(cat <<EOF_FAILURE
+failed: [localhost] => {"changed": true, "cmd": "echo 'hello world'\n exit 1", "delta": "0:00:00.004274", "end": "2015-10-18 01:24:13.272467", "rc": 1, "start": "2015-10-18 01:24:13.268193", "warnings": []}
+stdout: hello world
+
+FATAL: all hosts have already failed -- aborting
+
+PLAY RECAP ******************************************************************** 
+					 to retry, use: --limit @/Users/matt/test-fail.retry
+
+localhost                  : ok=1    changed=0    unreachable=0    failed=1  
+EOF_FAILURE)
+
+
+# Run our mock ansible
+
+debug "Starting output"
+echo "$output_start"
+debug sleeping "$mock_sleep"
+sleep $mock_sleep 2>/dev/null
+[ "$mock_rc" == "0" ] && echo "$output_success"
+[ "$mock_rc" != "0" ] && echo "$output_failure"
+exit $mock_rc
